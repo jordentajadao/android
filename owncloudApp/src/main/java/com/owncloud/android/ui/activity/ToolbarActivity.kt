@@ -35,6 +35,7 @@ import com.owncloud.android.R
 import com.owncloud.android.authentication.AccountUtils
 import com.owncloud.android.datamodel.FileDataStorageManager
 import com.owncloud.android.datamodel.OCFile
+import com.owncloud.android.presentation.ui.accounts.AccountManagementActivity
 import com.owncloud.android.utils.AvatarUtils
 
 /**
@@ -106,7 +107,7 @@ abstract class ToolbarActivity : BaseActivity() {
             baseContext.resources.getDimension(R.dimen.toolbar_avatar_radius)
         )
         avatarView.setOnClickListener {
-            startActivity(Intent(baseContext, ManageAccountsActivity::class.java))
+            startActivity(Intent(baseContext, AccountManagementActivity::class.java))
         }
     }
 

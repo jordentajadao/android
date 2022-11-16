@@ -58,8 +58,11 @@ import com.owncloud.android.extensions.openPrivacyPolicy
 import com.owncloud.android.extensions.sendEmail
 import com.owncloud.android.lib.common.OwnCloudAccount
 import com.owncloud.android.presentation.UIResult
+import com.owncloud.android.presentation.ui.accounts.AccountManagementActivity
 import com.owncloud.android.presentation.ui.settings.SettingsActivity
 import com.owncloud.android.presentation.viewmodels.drawer.DrawerViewModel
+import com.owncloud.android.presentation.ui.accounts.KEY_ACCOUNT_LIST_CHANGED
+import com.owncloud.android.presentation.ui.accounts.KEY_CURRENT_ACCOUNT_CHANGED
 import com.owncloud.android.utils.AvatarUtils
 import com.owncloud.android.utils.DisplayUtils
 import com.owncloud.android.utils.PreferenceUtils
@@ -180,7 +183,7 @@ abstract class DrawerActivity : ToolbarActivity() {
                 }
                 R.id.drawer_menu_account_add -> createAccount(false)
                 R.id.drawer_menu_account_manage -> {
-                    val manageAccountsIntent = Intent(applicationContext, ManageAccountsActivity::class.java)
+                    val manageAccountsIntent = Intent(applicationContext, AccountManagementActivity::class.java)
                     startActivityForResult(manageAccountsIntent, ACTION_MANAGE_ACCOUNTS)
                 }
                 R.id.drawer_menu_feedback -> openFeedback()
@@ -596,13 +599,13 @@ abstract class DrawerActivity : ToolbarActivity() {
         // - ACCOUNT_LIST_CHANGED = true
         // - RESULT_OK
         if (requestCode == ACTION_MANAGE_ACCOUNTS && resultCode == Activity.RESULT_OK && data!!.getBooleanExtra(
-                ManageAccountsActivity.KEY_ACCOUNT_LIST_CHANGED,
+                KEY_ACCOUNT_LIST_CHANGED,
                 false
             )
         ) {
 
             // current account has changed
-            if (data.getBooleanExtra(ManageAccountsActivity.KEY_CURRENT_ACCOUNT_CHANGED, false)) {
+            if (data.getBooleanExtra(KEY_CURRENT_ACCOUNT_CHANGED, false)) {
                 account = drawerViewModel.getCurrentAccount(this)
                 // Refresh dependencies to be used in selected account
                 initDependencyInjection()
