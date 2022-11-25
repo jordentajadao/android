@@ -29,6 +29,7 @@ import com.owncloud.android.presentation.ui.files.details.FileDetailsViewModel
 import com.owncloud.android.presentation.ui.files.filelist.MainFileListViewModel
 import com.owncloud.android.presentation.ui.files.operations.FileOperationsViewModel
 import com.owncloud.android.presentation.ui.security.passcode.PasscodeAction
+import com.owncloud.android.presentation.viewmodels.accounts.AccountsManagementViewModel
 import com.owncloud.android.presentation.viewmodels.authentication.OCAuthenticationViewModel
 import com.owncloud.android.presentation.viewmodels.capabilities.OCCapabilityViewModel
 import com.owncloud.android.presentation.viewmodels.conflicts.ConflictsResolveViewModel
@@ -111,4 +112,5 @@ val viewModelModule = module {
     viewModel { TransfersViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     viewModel { (ocFile: OCFile) -> ConflictsResolveViewModel(get(), get(), get(), get(), get(), ocFile) }
     viewModel { ReceiveExternalFilesViewModel(get(), get()) }
+    viewModel { AccountsManagementViewModel(get()) }
 }
