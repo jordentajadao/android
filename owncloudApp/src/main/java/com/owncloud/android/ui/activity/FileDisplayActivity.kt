@@ -572,7 +572,8 @@ class FileDisplayActivity : FileActivity(),
             transfersViewModel.uploadFilesFromSystem(
                 accountName = account.name,
                 listOfLocalPaths = filePaths.toList(),
-                uploadFolderPath = remotePathBase!!
+                uploadFolderPath = remotePathBase!!,
+                spaceId = currentDir.spaceId,
             )
 
         } else {
@@ -608,6 +609,7 @@ class FileDisplayActivity : FileActivity(),
             accountName = account.name,
             listOfContentUris = streamsToUpload,
             uploadFolderPath = remotePath,
+            spaceId = currentDir.spaceId,
         )
     }
 
