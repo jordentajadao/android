@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface SpacesRepository {
     fun refreshSpacesForAccount(accountName: String)
+    fun getAllSpaces(): List<OCSpace>
     fun getProjectSpacesWithSpecialsForAccountAsFlow(accountName: String): Flow<List<OCSpace>>
     fun getPersonalAndProjectSpacesWithSpecialsForAccountAsFlow(accountName: String): Flow<List<OCSpace>>
     fun getPersonalAndProjectSpacesForAccount(accountName: String): List<OCSpace>

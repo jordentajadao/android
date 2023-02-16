@@ -1,7 +1,6 @@
 /**
  * ownCloud Android client application
  *
- * @author Abel García de Prada
  * @author Juan Carlos Garrote Gascón
  *
  * Copyright (C) 2023 ownCloud GmbH.
@@ -19,18 +18,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.owncloud.android.data.spaces.datasources
+package com.owncloud.android.domain.spaces.usecases
 
+import com.owncloud.android.domain.BaseUseCase
+import com.owncloud.android.domain.spaces.SpacesRepository
 import com.owncloud.android.domain.spaces.model.OCSpace
-import kotlinx.coroutines.flow.Flow
 
-interface LocalSpacesDataSource {
-    fun saveSpacesForAccount(listOfSpaces: List<OCSpace>)
-    fun getAllSpaces(): List<OCSpace>
-    fun getProjectSpacesWithSpecialsForAccountAsFlow(accountName: String): Flow<List<OCSpace>>
-    fun getPersonalAndProjectSpacesWithSpecialsForAccountAsFlow(accountName: String): Flow<List<OCSpace>>
-    fun getPersonalAndProjectSpacesForAccount(accountName: String): List<OCSpace>
-    fun getSpaceWithSpecialsByIdForAccount(spaceId: String?, accountName: String): OCSpace
-    fun getWebDavUrlForSpace(spaceId: String?, accountName: String): String?
-    fun deleteSpacesForAccount(accountName: String)
+class GetAllSpacesUseCase(
+    private val spacesRepository: SpacesRepository
+) : BaseUseCase<List<OCSpace>, Unit>() {
+    override fun run(params: Unit) =
+        spacesRepository.getAllSpaces()
 }
