@@ -2,7 +2,9 @@
  * ownCloud Android client application
  *
  * @author David González Verdugo
- * Copyright (C) 2020 ownCloud GmbH.
+ * @author Juan Carlos Garrote Gascón
+ *
+ * Copyright (C) 2023 ownCloud GmbH.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2,
@@ -47,6 +49,7 @@ import com.owncloud.android.domain.exceptions.ServerConnectionTimeoutException
 import com.owncloud.android.domain.exceptions.ServerNotReachableException
 import com.owncloud.android.domain.exceptions.ServerResponseTimeoutException
 import com.owncloud.android.domain.exceptions.ServiceUnavailableException
+import com.owncloud.android.domain.exceptions.SpaceDisabledException
 import com.owncloud.android.domain.exceptions.UnauthorizedException
 import com.owncloud.android.domain.exceptions.validation.FileNameException
 import java.util.Locale
@@ -95,6 +98,7 @@ fun Throwable.parseError(
             is AccountNotTheSameException -> resources.getString(R.string.auth_account_not_the_same)
             is RedirectToNonSecureException -> resources.getString(R.string.auth_redirect_non_secure_connection_title)
             is LocalFileNotFoundException -> resources.getString(R.string.local_file_not_found_toast)
+            is SpaceDisabledException -> resources.getString(R.string.copy_file_space_disabled)
             else -> resources.getString(R.string.common_error_unknown)
         }
 

@@ -4,7 +4,7 @@
  * @author David González Verdugo
  * @author Juan Carlos Garrote Gascón
  *
- * Copyright (C) 2022 ownCloud GmbH.
+ * Copyright (C) 2023 ownCloud GmbH.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2,
@@ -60,6 +60,7 @@ import com.owncloud.android.domain.exceptions.ServiceUnavailableException
 import com.owncloud.android.domain.exceptions.ShareForbiddenException
 import com.owncloud.android.domain.exceptions.ShareNotFoundException
 import com.owncloud.android.domain.exceptions.ShareWrongParameterException
+import com.owncloud.android.domain.exceptions.SpaceDisabledException
 import com.owncloud.android.domain.exceptions.SpecificForbiddenException
 import com.owncloud.android.domain.exceptions.SpecificMethodNotAllowedException
 import com.owncloud.android.domain.exceptions.SpecificServiceUnavailableException
@@ -140,6 +141,7 @@ private fun <T> handleRemoteOperationResult(
         RemoteOperationResult.ResultCode.SHARE_NOT_FOUND -> throw ShareNotFoundException(remoteOperationResult.httpPhrase)
         RemoteOperationResult.ResultCode.SHARE_FORBIDDEN -> throw ShareForbiddenException(remoteOperationResult.httpPhrase)
         RemoteOperationResult.ResultCode.TOO_EARLY -> throw TooEarlyException()
+        RemoteOperationResult.ResultCode.DISABLED_SPACE -> throw SpaceDisabledException()
         else -> throw Exception()
     }
 }
